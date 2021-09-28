@@ -1,0 +1,14 @@
+name: GitHub Actions Demo
+on: [push]
+jobs:
+  check-cmake-build:
+    runs-on: ubuntu-latest
+    steps:
+      - run:  sudo apt-get update
+      - run: sudo apt-get install gcc -y
+      - run: sudo apt-get install g++ -y
+      - run: sudo apt-get install make -y
+      - run: sudo apt-get install cmake -y
+      - run: sudo apt-get install libboost-test-dev -y
+      - uses: actions/checkout@v2
+      - uses: actions/run-cmake@v3
