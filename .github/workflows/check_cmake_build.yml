@@ -13,13 +13,10 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - run : echo ${{ github.workspace }}
-      - run : mkdir build && cd build && pwd
-      - run : pwd
-      - run : cmake ../
-      - run : cmake --build .
-      - name: check current path
-        run: pwd
+      - run : mkdir build
+      - run : cd build && cmake ../
+      - run : cd build && cmake --build .
       - name: check files
-        run: ls -l
+        run: cd build && ls -l
       - name: check files grep helloworld
-        run: ls -l | grep helloworld
+        run: cd build && ls -l | grep helloworld
