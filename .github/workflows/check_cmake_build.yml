@@ -25,7 +25,7 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           automatic_release_tag: ${{ github.run_number }}
-          files: helloworld-0.0.${{ github.run_number }}-Linux.deb
+          files: build/helloworld-0.0.${{ github.run_number }}-Linux.deb
         id: creating_release
 
 
