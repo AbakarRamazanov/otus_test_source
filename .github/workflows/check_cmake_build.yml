@@ -19,7 +19,9 @@ jobs:
       - run : cd build && cmake --build .
       - run : cd build && cmake --build . --target test
       - run : cd build && cmake --build . --target package
-      - name: check files
-        run: cd build && ls -l
-      - name: run program
-        run: cd build && ./test_version
+      - uses : "marvinpinto/action-automatic-releases@latest"
+        name : Create a Release
+        with :
+          repo_token : "${{ secrets.GITHUB_TOKEN }}"
+          prerelease : false
+          automatic_release_tag: ${{ github.run_number }}
