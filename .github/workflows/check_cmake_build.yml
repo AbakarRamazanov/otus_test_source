@@ -13,15 +13,20 @@ jobs:
       - run: sudo apt-get install libboost-test-dev -y
       - name: checkout
         uses: actions/checkout@v2
-      - run : echo ${{ github.workspace }}
-      - run : mkdir build
-      - run : cd build && cmake ../ -DPATCH_VERSION=${{ github.run_number }}
-      - run : cd build && cmake --build .
-      - run : cd build && cmake --build . --target test
-      - run : cd build && cmake --build . --target package
-      - uses : "marvinpinto/action-automatic-releases@latest"
-        name : Create a Release
-        with :
-          repo_token : "${{ secrets.GITHUB_TOKEN }}"
-          prerelease : false
+      - run: echo ${{ github.workspace }}
+      - run: mkdir build
+      - run: cd build && cmake ../ -DPATCH_VERSION=${{ github.run_number }}
+      - run: cd build && cmake --build .
+      - run: cd build && cmake --build . --target test
+      - run: cd build && cmake --build . --target package
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        name: Create a Release
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
           automatic_release_tag: ${{ github.run_number }}
+          files: helloworld-0.0.${{ github.run_number }}-Linux.deb
+        id: creating_release
+
+
+      
